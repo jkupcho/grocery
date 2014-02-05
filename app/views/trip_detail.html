@@ -18,16 +18,23 @@
       </div>
       <div class="discount-wrapper" ng-repeat='discount in item.discounts'>
         <div class="clearfix"></div>
-        <div class="col-md-8">
-          <p>
-          <span ng-if='!discount.edit'>{{discount.type}}</span>
-          <select ng-if='discount.edit' ng-model='discount.type' ng-options='dt for dt in discountTypes'>
-          </select>
-          </p>
+        <div class="show-discount" ng-if='!discount.edit'>
+          <div class="col-md-8">
+            <p>
+              <span>{{discount.type}}</span>
+            </p>
+          </div>
+          <div class="col-md-2">
+            <p>{{discount.amount | currency}}</p>
+          </div>
         </div>
-        <div class="col-md-2">
-          <p ng-if='!discount.edit'>{{discount.amount | currency}}</p>
-          <input ng-if='discount.edit' type="text" ng-model='discount.amount' value='discount.amount' />
+        <div class="edit-discount" ng-if='discount.edit'>
+          <div class="col-md-8">
+              <select ng-model='discount.type' ng-options='dt for dt in discountTypes'></select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" ng-model='discount.amount' value='discount.amount' />
+          </div>
         </div>
         <div class="col-md-2">
           <div class="pull-right">
@@ -45,6 +52,4 @@
       </div>
     </div>
   </div>
-  <div class="col-md-2"></div>
-  
 </div>
