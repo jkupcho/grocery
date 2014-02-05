@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="row" ng-repeat='item in itemsBought'>
+      <div class='col-md-8'>
+        <p>{{item.name}}</p>
+      </div>
+      <div class='col-md-2'>
+        <p>{{item.quantity}}</p>
+      </div>
+      <div class='col-md-2'>
+        <p class='pull-right'>
+          <span class='price-paid'>{{calculatePricePaid(item) | currency}}</span>            
+          <button ng-click='addDiscount(item)' type="button" class="btn btn-success btn-xs">
+            <span class="glyphicon glyphicon-plus"></span> Add Discount
+          </button>
+        </p>
+      </div>
+      <div class="discount-wrapper" ng-repeat='discount in item.discounts'>
+        <div class="clearfix"></div>
+        <div class="col-md-8">
+          <p>
+          <span ng-if='!discount.edit'>{{discount.type}}</span>
+          <select ng-if='discount.edit' ng-model='discount.type' ng-options='dt for dt in discountTypes'>
+          </select>
+          </p>
+        </div>
+        <div class="col-md-2">
+          <p ng-if='!discount.edit'>{{discount.amount | currency}}</p>
+          <input ng-if='discount.edit' type="text" ng-model='discount.amount' value='discount.amount' />
+        </div>
+        <div class="col-md-2">
+          <div class="pull-right">
+            <button ng-if='!discount.edit' ng-click='discount.edit = !discount.edit' type='button' class='btn btn-default btn-xs'>
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button ng-if='discount.edit' ng-click='discount.edit = !discount.edit' type='button' class='btn btn-success btn-xs'>
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button ng-click='item.discounts.splice($index, 1)' type='button' class='btn btn-danger btn-xs'>
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+  
+</div>

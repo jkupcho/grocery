@@ -1,0 +1,16 @@
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <td>Date:</td>
+      <td>Location:</td>
+      <td>Total Paid:</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat='trip in trips'>
+      <td><a href="#/trips/{{trip.id}}">{{trip.date}}</a></td>
+      <td>{{trip.location}}</td>
+      <td>{{trip.total | currency}}</td>
+    </tr>
+  </tbody>
+</table>
